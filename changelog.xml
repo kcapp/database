@@ -1,0 +1,15 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <include relativeToChangelogFile="true" file="./tables/game_mode.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/game_type.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/owe_type.xml" />
+
+    <include relativeToChangelogFile="true" file="./tables/player.xml" />
+    <include relativeToChangelogFile="true" file="./tables/game.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/match.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/owes.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/player2match.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/score.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/statistics_x01.xml"/>
+    <include relativeToChangelogFile="true" file="./tables/statistics_shootout.xml"/>
+</databaseChangeLog>

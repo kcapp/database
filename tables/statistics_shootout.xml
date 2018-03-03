@@ -1,0 +1,49 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="thordy" id="1">
+        <createTable tableName="statistics_shootout">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="match_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="player_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ppd" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="60s_plus" type="INT"/>
+            <column name="100s_plus" type="INT"/>
+            <column name="140s_plus" type="INT"/>
+            <column name="180s" type="INT"/>
+        </createTable>
+
+        <createIndex indexName="IDX_statistics_shootout_match_id" tableName="statistics_shootout">
+            <column name="match_id"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_statistics_shootout_player_id" tableName="statistics_shootout">
+            <column name="player_id"/>
+        </createIndex>
+
+        <addForeignKeyConstraint
+            baseColumnNames="match_id"
+            baseTableName="statistics_shootout"
+            constraintName="FK_statistics_shootout_match_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="match"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="player_id"
+            baseTableName="statistics_shootout"
+            constraintName="FK_statistics_shootout_player_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="player"/>
+    </changeSet>
+</databaseChangeLog>

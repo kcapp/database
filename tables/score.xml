@@ -1,0 +1,63 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="thordy" id="1">
+        <createTable tableName="score">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="match_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="player_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_dart" type="INT"/>
+            <column name="first_dart_multiplier" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="second_dart" type="INT"/>
+            <column name="second_dart_multiplier" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="third_dart" type="INT"/>
+            <column name="third_dart_multiplier" type="INT" defaultValueNumeric="1">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_bust" type="BIT" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex indexName="IDX_score_match_id" tableName="score">
+            <column name="match_id"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_score_player_id" tableName="score">
+            <column name="player_id"/>
+        </createIndex>
+
+        <addForeignKeyConstraint
+            baseColumnNames="match_id"
+            baseTableName="score"
+            constraintName="FK_score_match_id"
+            onDelete="CASCADE"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="match"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="player_id"
+            baseTableName="score"
+            constraintName="FK_score_player_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="player"/>
+    </changeSet>
+</databaseChangeLog>

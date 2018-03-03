@@ -1,0 +1,29 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="thordy" id="1">
+        <createTable tableName="game_type">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(128)"/>
+        </createTable>
+
+        <insert tableName="game_type">
+            <column name="id" value="1"/>
+            <column name="name" value="x01"/>
+            <column name="description" value="Score from X01 to 0"/>
+        </insert>
+        <insert tableName="game_type">
+            <column name="id" value="2"/>
+            <column name="name" value="9 Dart Shootout"/>
+            <column name="description" value="Try to score the most points in 9 darts"/>
+        </insert>
+
+        <rollback>
+            <dropTable cascadeConstraints="true" tableName="game_type"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,75 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="thordy" id="1">
+        <createTable tableName="game">
+            <column autoIncrement="true" name="id" type="INT UNSIGNED">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="is_finished" type="BIT" defaultValueBoolean="false">
+                <constraints nullable="false"/></column>
+            <column name="current_match_id" type="INT UNSIGNED"/>
+            <column name="winner_id" type="INT UNSIGNED"/>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_mode_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="game_type_id" type="INT UNSIGNED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="owe_type_id" type="INT UNSIGNED"/>
+        </createTable>
+
+        <createIndex indexName="IDX_game_winner_id" tableName="game">
+            <column name="winner_id"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_game_game_type_id" tableName="game">
+            <column name="game_type_id"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_game_owe_type_id" tableName="game">
+            <column name="owe_type_id"/>
+        </createIndex>
+
+        <addForeignKeyConstraint
+            baseColumnNames="game_mode_id"
+            baseTableName="game"
+            constraintName="FK_game_game_mode_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="game_mode"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="game_type_id"
+            baseTableName="game"
+            constraintName="FK_game_game_type_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="game_type"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="owe_type_id"
+            baseTableName="game"
+            constraintName="FK_game_owe_type_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="owe_type"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="winner_id"
+            baseTableName="game"
+            constraintName="FK_game_winner_id"
+            onDelete="NO ACTION"
+            onUpdate="NO ACTION"
+            referencedColumnNames="id"
+            referencedTableName="player"/>
+    </changeSet>
+</databaseChangeLog>
