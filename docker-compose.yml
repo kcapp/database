@@ -11,4 +11,4 @@ mysql:
     - MYSQL_ROOT_PASSWORD=abcd1234
     - MYSQL_USER=developer
     - MYSQL_PASSWORD=abcd1234
-    - MYSQL_DATABASE=cakeapp_dev
+    - MYSQL_DATABASE=cakedarts
