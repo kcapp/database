@@ -1,2 +1,5 @@
 liquibase.jar
 mysql.jar
+
+# Don't commit local changes to database settings
+liquibase.properties
