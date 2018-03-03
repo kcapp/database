@@ -1,0 +1,14 @@
+mysql:
+  image: mysql:latest
+  command: mysqld --sql_mode=""
+  volumes:
+    - ./mysql:/var/lib/mysql
+  ports:
+    - 3306:3306
+  expose:
+    - 3306
+  environment:
+    - MYSQL_ROOT_PASSWORD=abcd1234
+    - MYSQL_USER=developer
+    - MYSQL_PASSWORD=abcd1234
+    - MYSQL_DATABASE=cakeapp_dev
