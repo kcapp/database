@@ -6,7 +6,8 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="is_finished" type="BIT" defaultValueBoolean="false">
-                <constraints nullable="false"/></column>
+                <constraints nullable="false"/>
+            </column>
             <column name="current_match_id" type="INT UNSIGNED"/>
             <column name="winner_id" type="INT UNSIGNED"/>
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">

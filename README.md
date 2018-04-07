@@ -30,7 +30,7 @@ Then execute
 docker-compose up -d
 ```
 
-## Installing
+## Install
 Make sure your current directory contains both `liquibase.jar` and a [MySQL JDBC Driver](https://dev.mysql.com/downloads/connector/j/)
 
 For a full list of Liquibase commands see [Liquibase Command Line](https://www.liquibase.org/documentation/command_line.html)

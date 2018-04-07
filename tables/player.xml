@@ -9,12 +9,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="nickname" type="VARCHAR(255)"/>
-            <column name="games_played" type="INT" defaultValueNumeric="0">
-                <constraints nullable="false"/>
-            </column>
-            <column name="games_won" type="INT" defaultValueNumeric="0">
-                <constraints nullable="false"/>
-            </column>
+            <column name="profile_pic_url" type="VARCHAR(512)"/>
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
