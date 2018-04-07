@@ -3,3 +3,6 @@ mysql.jar
 
 # Don't commit local changes to database settings
 liquibase.properties
+
+# Ignore docker mysql directory
+mysql/
