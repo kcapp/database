@@ -1,20 +1,7 @@
 # kcapp-database
-Database schema is managed using [Liquibase](https://www.liquibase.org/)
-## WIP: Breaking changes may occur!
+Database schema is managed using [Goose database migration tool](https://github.com/pressly/goose)
 
 ## Configuration
-### Standalone
-Configuration is done through the `liquibase.properties` file. The following must be specified
-```
-changeLogFile: changelog.xml
-
-driver: com.mysql.jdbc.Driver
-classpath: mysql.jar
-
-url: jdbc:mysql://<db_host>/<db_schema>
-username: <db_username>
-password: <db_password>
-````
 
 ### Docker
 Database can also be setup with [Docker](https://www.docker.com/). Configure the database `environment` in  `docker-compose.yml`
@@ -30,15 +17,19 @@ Then execute
 docker-compose up -d
 ```
 
-## Install
-Make sure your current directory contains both `liquibase.jar` and a [MySQL JDBC Driver](https://dev.mysql.com/downloads/connector/j/)
+## Migrations
+### Requirements
+Golang + [Goose] library
+```
+go get -u github.com/pressly/goose/cmd/goose
+```
 
-For a full list of Liquibase commands see [Liquibase Command Line](https://www.liquibase.org/documentation/command_line.html)
+For a full list of migration commands see Goose README.md https://github.com/pressly/goose
 
-* See status of applied updates
-	`java -jar liquibase.jar --defaultsFile=liquibase.properties status`
-* Apply latest updates
-	`java -jar liquibase.jar --defaultsFile=liquibase.properties update`
-* Rollback some number of updates
-	`java -jar liquibase.jar --defaultsFile=liquibase.properties rollbackCount <count>`
+* Create new migration (creating / dropping entities)
+	`goose create create_table_my_new_table sql`
+* Check status of migrations
+	`goose mysql "root:abcd1234@/cakedarts?parseTime=true" status`
+* Apply migrations
+	`goose mysql "root:abcd1234@/cakedarts?parseTime=true" up`
 
