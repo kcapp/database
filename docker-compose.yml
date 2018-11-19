@@ -1,6 +1,6 @@
 mysql:
   image: mysql:latest
-  command: mysqld --sql_mode=""
+  command: mysqld --sql_mode="" --init-file /init.sql
   volumes:
     - ./mysql:/var/lib/mysql
   ports:
