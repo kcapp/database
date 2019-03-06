@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT EXISTS cakedarts;
-USE cakedarts;
+CREATE DATABASE IF NOT EXISTS kcapp;
+USE kcapp;
