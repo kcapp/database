@@ -23,7 +23,7 @@ CREATE TABLE `statistics_x01` (
   KEY `statistics_x01_player_id_foreign` (`player_id`),
   CONSTRAINT `statistics_x01_match_id_foreign` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`),
   CONSTRAINT `statistics_x01_player_id_foreign` FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11215 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.

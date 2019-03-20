@@ -4,32 +4,39 @@ Database schema is managed using [Goose database migration tool](https://github.
 ## Configuration
 
 ### Docker
-Database can also be setup with [Docker](https://www.docker.com/). Configure the database `environment` in  `docker-compose.yml`
+Database can be setup using [Docker](https://www.docker.com/). 
+
+Configure the database `environment` in  `docker-compose.yml`. (If you hate defaults...)
 ```
 environment:
-  - MYSQL_ROOT_PASSWORD=<root_password>
-  - MYSQL_USER=<db_username>
-  - MYSQL_PASSWORD=<db_password>
-  - MYSQL_DATABASE=<db_schema>
+  - MYSQL_DATABASE: <schema_name>
+  - MYSQL_USER: <username>
+  - MYSQL_PASSWORD: <password>
+  - MYSQL_ROOT_PASSWORD: <root_password>
 ```
-Then execute
+Then execute, to start docker image in detached mode
 ```
 docker-compose up -d
 ```
 
 ## Migrations
-### Requirements
-Golang + [Goose] library
+Migrations are handled with [Golang](https://golang.org/) + [Goose](https://github.com/pressly/goose) library
+
+### Installation
+To install `goose`
 ```
 go get -u github.com/pressly/goose/cmd/goose
 ```
 
-For a full list of migration commands see Goose README.md https://github.com/pressly/goose
+For a full list of migration commands see [Goose usage](https://github.com/pressly/goose#usage)
 
-* Create new migration (creating / dropping entities)
-	`goose create create_table_my_new_table sql`
-* Check status of migrations
-	`goose mysql "root:abcd1234@/cakedarts?parseTime=true" status`
-* Apply migrations
-	`goose mysql "root:abcd1234@/cakedarts?parseTime=true" up`
+### Migration Status
+`goose mysql "kcapp:abcd1234@tcp(localhost:3366)/kcapp?parseTime=true" status`
 
+### Apply New Migrations
+`goose mysql "kcapp:abcd1234@tcp(localhost:3366)/kcapp?parseTime=true" up`
+
+### Creating new Migrations
+To create a new migration run
+
+`goose create create_table_my_new_table sql`

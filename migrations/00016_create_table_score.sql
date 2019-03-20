@@ -18,7 +18,7 @@ CREATE TABLE `score` (
   KEY `score_player_id_foreign` (`player_id`),
   CONSTRAINT `FK_score2match_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`) ON DELETE CASCADE,
   CONSTRAINT `score_player_id_foreign` FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111461 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.

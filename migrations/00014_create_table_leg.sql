@@ -19,7 +19,7 @@ CREATE TABLE `leg` (
   CONSTRAINT `match_current_player_id_foreign` FOREIGN KEY (`current_player_id`) REFERENCES `player` (`id`),
   CONSTRAINT `match_game_id_foreign` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`),
   CONSTRAINT `match_winner_id_foreign` FOREIGN KEY (`winner_id`) REFERENCES `player` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7669 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.

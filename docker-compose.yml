@@ -1,14 +1,18 @@
-mysql:
-  image: mysql:latest
-  command: mysqld --sql_mode="" --init-file /init.sql
-  volumes:
-    - ./mysql:/var/lib/mysql
-  ports:
-    - 3306:3306
-  expose:
-    - 3306
-  environment:
-    - MYSQL_ROOT_PASSWORD=abcd1234
-    - MYSQL_USER=developer
-    - MYSQL_PASSWORD=abcd1234
-    - MYSQL_DATABASE=cakedarts
+version: '3.3'
+services:
+  kcapp_db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'kcapp'
+      MYSQL_USER: 'kcapp'
+      MYSQL_PASSWORD: 'abcd1234'
+      MYSQL_ROOT_PASSWORD: 'abcd1234'
+    ports:
+      - '3366:3306'
+    expose:
+      - '3366'
+    volumes:
+      - kcapp-db:/var/lib/mysql
+volumes:
+  kcapp-db:

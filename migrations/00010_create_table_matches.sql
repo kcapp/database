@@ -25,7 +25,7 @@ CREATE TABLE `matches` (
   CONSTRAINT `FK_game2owe_type_id` FOREIGN KEY (`owe_type_id`) REFERENCES `owe_type` (`id`),
   CONSTRAINT `FK_game2winner_id` FOREIGN KEY (`winner_id`) REFERENCES `player` (`id`),
   CONSTRAINT `FK_matches2tournament_id` FOREIGN KEY (`tournament_id`) REFERENCES `tournament` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3181 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.

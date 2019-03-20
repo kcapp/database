@@ -7,9 +7,15 @@ CREATE TABLE `match_mode` (
   `name` varchar(255) NOT NULL,
   `short_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert  into `match_mode`(`id`,`wins_required`,`legs_required`,`name`,`short_name`) values (1,1,1,'No sets','BO1'),(2,2,NULL,'First to win 2','BO3'),(3,3,NULL,'First to win 3','BO5'),(4,2,2,'Best of 2','BO2'),(5,3,4,'Best of 4','BO4'),(6,4,NULL,'First to win 4','BO7');
+INSERT INTO `match_mode`(`id`,`wins_required`,`legs_required`,`name`,`short_name`) VALUES
+(1, 1, 1, 'No sets', 'BO1'),
+(2, 2, NULL, 'First to win 2', 'BO3'),
+(3, 3, NULL, 'First to win 3', 'BO5'),
+(4, 2, 2, 'Best of 2', 'BO2'),
+(5, 3, 4, 'Best of 4', 'BO4'),
+(6, 4, NULL, 'First to win 4', 'BO7');
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.

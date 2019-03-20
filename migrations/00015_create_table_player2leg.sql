@@ -14,7 +14,7 @@ CREATE TABLE `player2leg` (
   CONSTRAINT `FK_player2match2match_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`) ON DELETE CASCADE,
   CONSTRAINT `player2match_game_id_foreign` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`),
   CONSTRAINT `player2match_player_id_foreign` FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16973 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 -- SQL in this section is executed when the migration is rolled back.
