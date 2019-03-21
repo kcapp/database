@@ -2,6 +2,7 @@ version: '3.3'
 services:
   kcapp_db:
     image: mysql:5.7
+    command: mysqld --sql_mode=""
     restart: always
     environment:
       MYSQL_DATABASE: 'kcapp'
