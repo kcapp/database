@@ -1,4 +1,5 @@
-# kcapp-database
+![kcapp logo](https://raw.githubusercontent.com/kcapp/frontend/master/public/images/logo.png)
+# database
 Database schema is managed using [Goose database migration tool](https://github.com/pressly/goose)
 
 ## Configuration
