@@ -1,8 +1,18 @@
 -- +goose Up
 INSERT INTO `match_type`(`id`,`name`,`description`) VALUES (9, 'Tic Tac Toe', 'Tic Tac Toe');
 
+CREATE TABLE `outshot_type` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `short_name` varchar(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `outshot_type`(`id`,`name`, `short_name`) VALUES (1, 'Double Out', 'DO'), (2, 'Master Out', 'MO'), (3, 'Any Out', 'AO');
+
 CREATE TABLE `leg_parameters` (
   `leg_id` int(10) unsigned NOT NULL,
+  `outshot_type_id` int(10) unsigned NULL,
   `number_1` int(11),
   `number_2` int(11),
   `number_3` int(11),
@@ -15,10 +25,11 @@ CREATE TABLE `leg_parameters` (
   PRIMARY KEY (`leg_id`),
   UNIQUE KEY `UNQ_leg_parameters_leg_id` (`leg_id`),
   KEY `fk_leg_parameters_leg_id` (`leg_id`),
-  CONSTRAINT `fk_leg_parameters_leg_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`)
+  CONSTRAINT `fk_leg_parameters_leg_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`),
+  CONSTRAINT `fk_outshot_type_id` FOREIGN KEY (`outshot_type_id`) REFERENCES `outshot_type` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `statistics_general` (
+CREATE TABLE `statistics_tic_tac_toe` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `leg_id` int(10) unsigned NOT NULL,
   `player_id` int(10) unsigned NOT NULL,
@@ -49,13 +60,14 @@ CREATE TABLE `statistics_general` (
   `numbers_closed` int(11),
   `highest_closed` int(11),
   PRIMARY KEY (`id`),
-  KEY `fk_statistics_general_leg_id` (`leg_id`),
-  KEY `fk_statistics_general_player_id` (`player_id`),
-  CONSTRAINT `fk_statistics_general_leg_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`),
-  CONSTRAINT `fk_statistics_general_player_id` FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
+  KEY `fk_statistics_tic_tac_toe_leg_id` (`leg_id`),
+  KEY `fk_statistics_tic_tac_toe_player_id` (`player_id`),
+  CONSTRAINT `fk_statistics_tic_tac_toe_leg_id` FOREIGN KEY (`leg_id`) REFERENCES `leg` (`id`),
+  CONSTRAINT `fk_statistics_tic_tac_toe_player_id` FOREIGN KEY (`player_id`) REFERENCES `player` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- +goose Down
 DELETE FROM `match_type` WHERE id = 9;
-DROP TABLE `statistics_general`;
+DROP TABLE `statistics_tic_tac_toe`;
 DROP TABLE `leg_parameters`;
+DROP TABLE `outshot_type`;
