@@ -65,16 +65,16 @@ BEGIN
 	     FROM statistics_x01 s
 	        LEFT JOIN leg l ON l.id = s.leg_id
 	        LEFT JOIN matches m ON m.id = l.match_id
-	     WHERE m.tournament_id = tid AND l.winner_id = s.player_id AND l.leg_type_id = 1
+	     WHERE m.tournament_id = tid AND l.winner_id = s.player_id AND m.match_type_id = 1
 	 UNION ALL
 	     -- Tournament Fish-N-Chips
 	     SELECT
 	         tid, 0, 0, 0, 0, 0, 0, 0, 0, count(s.id) AS 'fnc', 0, 0, 0, 0, 0
 	     FROM score s
-	              LEFT JOIN leg l ON l.id = s.leg_id
-	              LEFT JOIN matches m ON m.id = l.match_id
+            LEFT JOIN leg l ON l.id = s.leg_id
+            LEFT JOIN matches m ON m.id = l.match_id
 	     WHERE
-	             first_dart IN (1, 20, 5) AND first_dart_multiplier = 1
+	           first_dart IN (1, 20, 5) AND first_dart_multiplier = 1
 	       AND second_dart IN (1, 20, 5) AND second_dart_multiplier = 1
 	       AND third_dart IN (1, 20, 5) AND third_dart_multiplier = 1
 	       AND first_dart + second_dart + third_dart = 26
@@ -116,3 +116,4 @@ BEGIN
 	     GROUP BY t.id
 	) statistics;
 END;
+
