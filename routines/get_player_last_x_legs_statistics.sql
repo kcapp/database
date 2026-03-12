@@ -41,7 +41,7 @@ BEGIN
         COUNT(DISTINCT m2.id) AS 'matches_won',
         COUNT(DISTINCT l.id) AS 'legs_played',
         COUNT(DISTINCT l2.id) AS 'legs_won',
-        m.office_id AS 'office_id',
+        p.office_id AS 'office_id',
         SUM(s.ppd_score) / SUM(s.darts_thrown) AS 'ppd',
         SUM(s.first_nine_ppd) / COUNT(p.id) AS 'first_nine_ppd',
         (SUM(s.ppd_score) / SUM(s.darts_thrown)) * 3 AS 'three_dart_avg',
